@@ -1,20 +1,26 @@
 package crafter_coder.domain.course.model;
 
+import crafter_coder.global.exception.MyErrorCode;
+import crafter_coder.global.exception.MyException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 
+import static jakarta.persistence.EnumType.*;
 import static lombok.AccessLevel.*;
 
 @Embeddable @Getter
 @NoArgsConstructor(access = PROTECTED)
 public class CourseSchedule {
-
     @Column(nullable = false)
-    private String dayOfWeek;
+    @Enumerated(value = STRING)
+    private DayOfWeek dayOfWeek;
 
     @Column(nullable = false)
     private LocalTime startTime;
@@ -22,13 +28,17 @@ public class CourseSchedule {
     @Column(nullable = false)
     private LocalTime endTime;
 
-    private CourseSchedule(String dayOfWeek, LocalTime startTime, LocalTime endTime) {
+    private CourseSchedule(DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
+
     }
 
-    public static CourseSchedule of(String dayOfWeek, LocalTime startTime, LocalTime endTime) {
+    public static CourseSchedule of(DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
+        if(startTime.isAfter(endTime)) {
+            throw new MyException(MyErrorCode.INVALID_COURSE_DURATION);
+        }
         return new CourseSchedule(dayOfWeek, startTime, endTime);
     }
 }

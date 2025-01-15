@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -35,8 +36,8 @@ public class CourseCreateRequest {
     @Future(message = "현재보다 미래 날짜이어야 합니다.")
     private LocalDate endDate;
 
-    @NotBlank(message = "요일이 비어 있습니다.")
-    private String dayOfWeek;
+    @NotNull(message = "요일은 필수입니다.")
+    private DayOfWeek dayOfWeek;
 
     @NotNull(message = "주어진 startTime 이 없습니다.")
     private LocalTime startTime;
