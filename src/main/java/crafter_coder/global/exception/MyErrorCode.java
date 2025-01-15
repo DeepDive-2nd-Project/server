@@ -15,7 +15,10 @@ public enum MyErrorCode {
     NOT_GENERATE_FIRE_AI_IMAGE(HttpStatus.BAD_REQUEST,"횃불이 이미지가 생성 중 입니다."),
 
     // Course
-    NOT_FOUND_COURSE_CATEGORY(HttpStatus.NOT_FOUND, "존재하지 않는 카테고리입니다.")
+    NOT_FOUND_COURSE_CATEGORY(HttpStatus.NOT_FOUND, "존재하지 않는 카테고리입니다."),
+
+    // CourseDuration
+    INVALID_COURSE_DURATION(HttpStatus.UNPROCESSABLE_ENTITY, "강좌의 시작 날짜는 종료 날짜보다 이전이어야 합니다."),
     ;
 
     private final HttpStatus status;
