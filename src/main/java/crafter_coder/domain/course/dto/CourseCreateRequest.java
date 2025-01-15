@@ -1,5 +1,6 @@
 package crafter_coder.domain.course.dto;
 
+import crafter_coder.domain.course.model.category.CourseSubCategory;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,8 +17,8 @@ public class CourseCreateRequest {
     @NotBlank(message = "강좌 제목은 필수입니다.")
     private String name;
 
-    @NotBlank(message = "강좌 카테고리는 필수입니다.")
-    private String category;
+    @NotNull(message = "강좌 카테고리는 필수입니다.")
+    private CourseSubCategory category;
 
     @Min(value = 1, message = "최대 정원은 양수입니다.")
     private int capacity;

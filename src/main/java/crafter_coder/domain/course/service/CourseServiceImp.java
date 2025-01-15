@@ -24,10 +24,11 @@ public class CourseServiceImp implements CourseService {
 
         CourseDuration courseDuration = CourseDuration.of(request.getStartDate(), request.getEndDate());
         CourseSchedule courseSchedule = CourseSchedule.of(request.getDayOfWeek(), request.getStartTime(), request.getEndTime());
-        CourseSubCategory subCategoryBy = CourseSubCategory.getSubCategoryBy(request.getCategory());
+        //CourseSubCategory subCategoryBy = CourseSubCategory.getSubCategoryBy(request.getCategory());
+        CourseSubCategory subCategory = request.getCategory();
         EnrollmentCapacity enrollmentCapacity = EnrollmentCapacity.of(request.getCapacity());
 
-        Course course = Course.create(request.getName(), subCategoryBy.getCategory(), courseDuration, courseSchedule, null/*강사 ID*/, enrollmentCapacity, request.getPrice(),
+        Course course = Course.create(request.getName(), subCategory.getCategory(), courseDuration, courseSchedule, 1L, enrollmentCapacity, request.getPrice(),
                 request.getPlace(), request.getDeadline());
         Course savedCourse = courseRepository.save(course);
 
