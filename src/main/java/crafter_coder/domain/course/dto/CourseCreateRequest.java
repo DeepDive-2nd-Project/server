@@ -24,6 +24,9 @@ public class CourseCreateRequest {
     @PositiveOrZero(message = "금액은 0원 이상 입니다.")
     private int price;
 
+    @NotBlank(message = "강좌 위치는 필수입니다.")
+    private String place;
+
     @NotNull(message = "주어진 startDate 이 없습니다.")
     @Future(message = "현재보다 미래 날짜이어야 합니다.")
     private LocalDate startDate;
@@ -40,4 +43,8 @@ public class CourseCreateRequest {
 
     @NotNull(message = "주어진 startTime 이 없습니다.")
     private LocalTime endTime;
+
+    @NotNull(message = "주어진 deadline 이 없습니다.")
+    @Future(message = "현재보다 미래 날짜이어야 합니다.")
+    private LocalDate deadline;
 }

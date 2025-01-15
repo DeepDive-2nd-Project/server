@@ -1,10 +1,11 @@
 package crafter_coder.domain.course.model.category;
 
+import crafter_coder.global.exception.MyErrorCode;
+import crafter_coder.global.exception.MyException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
@@ -27,4 +28,9 @@ public enum CourseSubCategory {
     private final CourseCategory category; // 상위 카테고리
     private final String description; // 한글 표현
 
+    public static CourseSubCategory getSubCategoryBy(String description) {
+        return Arrays.stream(CourseSubCategory.values())
+                .filter(category -> category.getDescription().equals(description))
+                .findFirst().orElseThrow(() -> new MyException(MyErrorCode.NOT_FOUND_COURSE_CATEGORY));
+    }
 }

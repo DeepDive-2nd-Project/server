@@ -23,7 +23,7 @@ public class EnrollmentCapacity {
         this.currentEnrollment = currentEnrollment;
     }
 
-    public static EnrollmentCapacity of(int maxCapacity, int currentEnrollment) {
-        return new EnrollmentCapacity(maxCapacity, currentEnrollment);
+    public static EnrollmentCapacity of(int maxCapacity) {
+        return new EnrollmentCapacity(maxCapacity, 0);
     }
 }

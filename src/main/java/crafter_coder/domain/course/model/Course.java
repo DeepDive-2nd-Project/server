@@ -51,4 +51,25 @@ public class Course {
 
     @Column(nullable = false)
     private LocalDate enrollmentDeadline; // 수강신청 데드라인
+
+    private Course(String name, CourseCategory courseCategory, CourseDuration courseDuration, CourseSchedule courseSchedule,
+                   Long instructorId, CourseStatus status, EnrollmentCapacity enrollmentCapacity, int price, String place, LocalDate enrollmentDeadline) {
+        this.name = name;
+        this.courseCategory = courseCategory;
+        this.courseDuration = courseDuration;
+        this.courseSchedule = courseSchedule;
+        this.instructorId = instructorId;
+        this.status = status;
+        this.enrollmentCapacity = enrollmentCapacity;
+        this.price = price;
+        this.place = place;
+        this.enrollmentDeadline = enrollmentDeadline;
+    }
+
+    public static Course create(String name, CourseCategory courseCategory, CourseDuration courseDuration, CourseSchedule courseSchedule,
+                                Long instructorId, EnrollmentCapacity enrollmentCapacity, int price, String place, LocalDate enrollmentDeadline) {
+
+
+        return new Course(name, courseCategory, courseDuration, courseSchedule, instructorId, CourseStatus.OPEN, enrollmentCapacity, price, place, enrollmentDeadline);
+    }
 }
