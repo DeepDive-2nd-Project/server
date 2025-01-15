@@ -8,9 +8,10 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-import static lombok.AccessLevel.*;
+import static lombok.AccessLevel.PROTECTED;
 
-@Embeddable @Getter
+@Embeddable
+@Getter
 @NoArgsConstructor(access = PROTECTED)
 public class CourseDuration {
 
@@ -24,7 +25,7 @@ public class CourseDuration {
     }
 
     public static CourseDuration of(LocalDate startDate, LocalDate endDate) {
-        if(startDate.isAfter(endDate)){
+        if (startDate.isAfter(endDate)) {
             throw new MyException(MyErrorCode.INVALID_COURSE_DURATION);
         }
 
