@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/course")
@@ -25,6 +23,6 @@ public class CourseController {
     @PostMapping
     public ResponseEntity<ResponseDto<CourseCreateResponse>> createCourse(String username, @Valid @RequestBody CourseCreateRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED.value())
-                .body(ResponseDto.of(courseService.createCourse(username, request), "강좌 개설"));
+                .body(ResponseDto.of(courseService.openCourse(username, request), "강좌 개설"));
     }
 }

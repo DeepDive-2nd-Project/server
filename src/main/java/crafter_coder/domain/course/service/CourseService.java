@@ -5,5 +5,7 @@ import crafter_coder.domain.course.dto.CourseCreateResponse;
 
 public interface CourseService {
 
-    CourseCreateResponse createCourse(String username, CourseCreateRequest request);
+    CourseCreateResponse openCourse(String username, CourseCreateRequest request);
+
+    void applyCourse(String username, CourseApplyRequest request);
 }
